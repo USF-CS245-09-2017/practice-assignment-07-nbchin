@@ -7,6 +7,8 @@ import java.util.ArrayList;
 
 public class Practice7Test {
 	
+	Hashtable hashtable;
+	
 	
 	public Practice7Test() {
 	}
@@ -39,7 +41,7 @@ public class Practice7Test {
 		hashtable = new Hashtable();
 		
 		try {
-			if (! hashtable.contains(key)) {
+			if (! hashtable.containsKey(key)) {
 				if (hashtable.get(key).equals(null))
 					success = true;
 				else
@@ -84,7 +86,7 @@ public class Practice7Test {
 		hashtable = new Hashtable();
 		
 		try {
-			if (! hashtable.contains(key)) {
+			if (! hashtable.containsKey(key)) {
 				String shouldNotExist = hashtable.remove(key);
 				if (shouldNotExist != null || shouldNotExist.length() > 0)
 					success = false;
@@ -101,7 +103,14 @@ public class Practice7Test {
 	
 	
 	public long timingTest() {
-		File file = new File("/usr/share/dict/web2");
+
+		//System.out.println("sys get prop: " + System.getProperty("user.dir") + "\\web2");
+		File file = new File(System.getProperty("user.dir") + "\\web2");
+		if(file.exists() && !file.isDirectory()){
+			System.out.println("file found");
+		}
+		
+		
 		BufferedReader reader = null;
 		ArrayList<String> lookingFor = new ArrayList<String>();
 		Random random = new Random();
